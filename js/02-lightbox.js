@@ -4,9 +4,8 @@ import { galleryItems } from './gallery-items.js';
 // console.log(galleryItems);
 
 const galleryContainer = document.querySelector('.gallery');
-const modalWindow = document.querySelector('.basicLightbox');
+
 const cardsMarkup = createGalleryMarkup(galleryItems);
-let instance = '';
 
 function createGalleryMarkup (images) {
     return galleryItems
