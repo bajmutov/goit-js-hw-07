@@ -5,6 +5,7 @@ import { galleryItems } from './gallery-items.js';
 // console.log(galleryItems);
 
 const galleryContainer = document.querySelector('.gallery');
+const modalWindow = document.querySelector('.basicLightbox');
 const cardsMarkup = createGalleryMarkup(galleryItems);
 let instance = '';
 
@@ -30,7 +31,6 @@ function createGalleryMarkup (images) {
 galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
 
 galleryContainer.addEventListener('click', onClick);
-document.addEventListener('keyup', closeModal);
 
 function onClick(evt) {
     evt.preventDefault();
@@ -51,16 +51,16 @@ function createModal (src){
         <img width="1400" height="900" src="${src}">
     `);
     instance.show();
+    document.addEventListener('keyup', closeModal)
     }
 
 function closeModal(evt) {
     console.log(evt.code)
     
-                if (evt.code === 'Escape' ) {
-                    instance.close();
-                      document.removeEventListener("keyup", closeModal);
+     if (evt.code === 'Escape' ) {
+        instance.close();
+        document.removeEventListener("keyup", closeModal);
                 }
-  
  }
 
 
