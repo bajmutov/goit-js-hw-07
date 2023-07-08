@@ -36,7 +36,7 @@ function onClick(evt) {
     evt.preventDefault();
     const {target} = evt;
 
-    if (!evt.target.classList.contains('gallery__image')){
+    if (target.nodeName !== "IMG"){
         return;
     }
 
@@ -49,18 +49,19 @@ function onClick(evt) {
 function createModal (src){
         instance = basicLightbox.create(`
         <img width="1400" height="900" src="${src}">
-    `);
+    ` ,{
+		onShow: (instance) => document.addEventListener('keyup', closeModal),
+		onClose: (instance) => document.removeEventListener("keyup", closeModal)
+	});
     instance.show();
-    document.addEventListener('keyup', closeModal)
-    }
+        }
 
 function closeModal(evt) {
     console.log(evt.code)
     
      if (evt.code === 'Escape' ) {
         instance.close();
-        document.removeEventListener("keyup", closeModal);
-                }
+                    }
  }
 
 
